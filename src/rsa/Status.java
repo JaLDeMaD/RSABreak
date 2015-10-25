@@ -29,7 +29,7 @@ public class Status {
     public static String avrageToString(Status [] statuses) {
         Duration avg = statuses[0].duration;
         for(int i = 1; i < statuses.length; i++) {
-            avg = statuses[0].duration.plus(statuses[i].duration);
+            avg = avg.plus(statuses[i].duration);
         }
         avg = avg.dividedBy(statuses.length);
         long sum = 0;
