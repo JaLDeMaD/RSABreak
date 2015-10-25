@@ -18,8 +18,8 @@ public class PrivateKey extends PublicKey {
         this.q = q;
     }
 
-    public PrivateKey(BigInteger n,BigInteger p,
-                      BigInteger q,BigInteger phi,BigInteger e,BigInteger d) {
+    public PrivateKey(BigInteger n, BigInteger p,
+                      BigInteger q, BigInteger phi, BigInteger e, BigInteger d) {
         super(n, e);
         this.p = p;
         this.q = q;
@@ -61,15 +61,15 @@ public class PrivateKey extends PublicKey {
 
     public PrivateKey(int length) {
 
-                this.p = BigInteger.probablePrime(length/2, RSA.random);
-                this.q = BigInteger.probablePrime(length/2, RSA.random);
+        this.p = BigInteger.probablePrime(length/2, RSA.random);
+        this.q = BigInteger.probablePrime(length/2, RSA.random);
 
         this.n = this.p.multiply(this.q);
-       this.phi =
-               this.p.subtract(BigInteger.ONE).multiply(this.q.subtract(BigInteger.ONE));
+        this.phi =
+                this.p.subtract(BigInteger.ONE).multiply(this.q.subtract(BigInteger.ONE));
 
         this.e = new BigInteger("65537");
-        while(this.e.gcd(this.phi).compareTo(BigInteger.ONE) != 0) {
+        while (this.e.gcd(this.phi).compareTo(BigInteger.ONE) != 0) {
             Log.info("gcd(e, phi) != 1, choosing another value for e ...");
             this.e = BigInteger.probablePrime(17, RSA.random);
         }
@@ -80,7 +80,7 @@ public class PrivateKey extends PublicKey {
     @Override
     public String toString() {
         return String.format(
-                "\t\t[RSA Key of length %d]\np = \n%s\n\nq = \n%s\n\nn = \n%s\n\nphi = \n%s\n\ne = %s\n\nd = \n%s",
+                "\t\t\t  [RSA Key of length %d]\np = \n%s\n\nq = \n%s\n\nn = \n%s\n\nphi = \n%s\n\ne = %s\n\nd = \n%s",
                 this.n.bitLength(), indent(this.p), indent(this.q), indent(this.n), indent(this.phi), this.e, indent(this.d)
         );
     }
@@ -91,12 +91,12 @@ public class PrivateKey extends PublicKey {
 
     public static String indent(BigInteger n, int length) {
         String s = n.toString();
-        StringBuilder sb = new StringBuilder(s.length() + s.length()%length * 5 + 4);
-        int iteration = s.length()/length;
-        for(int i = 0; i < iteration; i++) {
-            sb.append("    " + s.substring(i*length, (i+1)*length) + "\n");
+        StringBuilder sb = new StringBuilder(s.length() + s.length() % length * 5 + 4);
+        int iteration = s.length() / length;
+        for (int i = 0; i < iteration; i++) {
+            sb.append("    " + s.substring(i * length, (i + 1) * length) + "\n");
         }
-        sb.append("    " + s.substring(iteration*length, s.length()));
+        sb.append("    " + s.substring(iteration * length, s.length()));
         return sb.toString();
     }
 

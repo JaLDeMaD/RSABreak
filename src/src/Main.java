@@ -9,7 +9,8 @@ import java.util.logging.Logger;
 public class Main {
   public static void main(String [] a) {
     Logger.getLogger("Main").setLevel(Level.INFO);
-
+    System.out.println(RSA.makePrivateKey(2048));
+    System.out.println("\nBreaking shorter Keys:-");
     loop(64, 104, 8, 3);
     loop(108, 128, 8, 1);
 
