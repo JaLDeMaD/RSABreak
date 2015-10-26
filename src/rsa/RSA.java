@@ -17,5 +17,11 @@ final public class RSA {
         return new PrivateKey(length);
     }
 
+		public static BigInteger encrypt(PublicKey k, BigInteger m) {
+        return m.modPow(k.getE(), k.getN());
+    }
 
+    public static BigInteger encrypt(PrivateKey k, BigInteger c) {
+        return c.modPow(k.getD(), k.getN());
+    }
 }
